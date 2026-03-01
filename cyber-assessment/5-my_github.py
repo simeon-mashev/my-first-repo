@@ -7,5 +7,8 @@ username = sys.argv[1]
 password = sys.argv[2]
 
 api_request = requests.get('https://api.github.com/user', auth=(username, password))
-info = api_request.json()
-print(info["id"])
+if (api_request.status_code == 401):
+    print(None)
+else:
+    info = api_request.json()
+    print(info["id"])
